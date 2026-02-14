@@ -1,0 +1,14 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\para{Linear Representation Hypothesis (\lrh).}
+Our work is grounded in the \lrh, which suggests that high-level abstract concepts are encoded as linear directions in the latent spaces of neural networks. \citet{park_2023_linear_representation_hypothesis} provide a theoretical framework for this hypothesis, showing that the residual stream of transformers often exhibits a geometric structure where concept vectors can be identified and manipulated. Empirical evidence for the \lrh has been found in diverse domains, including the representation of truth in factual statements \citep{marks_2023_geometry_truth} and the control of refusal behavior in safety-aligned models \citep{arditi_2024_refusal_single_direction}. We extend this line of inquiry to the stylistic domain of ``AI-ness.''
+
+\para{Representation Engineering (\repe).}
+The field of \repe focuses on monitoring and manipulating the internal states of AI models to control high-level cognitive and stylistic phenomena. \citet{li_2023_inference_time_intervention} introduced Inference-Time Intervention (ITI) to improve the truthfulness of LLMs by steering activations along identified truth directions. Similarly, \citet{zou_2023_representation_engineering} proposed a unified framework for identifying and controlling concepts like honesty and emotions. Our methodology utilizes the Difference-in-Means approach popularized by these works to identify the stylistic axis of AI-generated text.
+
+\para{Mechanistic Interpretability of Style.}
+Beyond simple factual or safety-related features, recent research has begun to explore more complex behavioral signatures. \citet{oneill_2025_single_direction_truth} found that contextual hallucinations are mediated by a single linear direction, suggesting that even inconsistent behaviors have a stable linear representation. \citet{lee_2024_mechanistic_understanding_alignment} examined how alignment techniques like DPO influence internal representations. While these works focus on correctness and safety, our research focuses on the broader stylistic signature of AI generation, which is often characterized by specific lexical and structural regularities.
+
+\para{AI-Generated Text Detection.}
+The detection of AI-generated text has traditionally relied on external classifiers. The \raid benchmark \citep{liamdugan2024raid} provides a comprehensive dataset for evaluating such detectors across various domains and generator models. Most current detectors use fine-tuned transformer models or statistical measures like perplexity and curvature. Our work differs from these black-box approaches by identifying an {\em internal} representation of AI-style within the generator model itself, offering a more mechanistic and potentially more robust path toward detection and control.

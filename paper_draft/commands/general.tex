@@ -1,0 +1,74 @@
+%%%%% GENERAL FORMATTING MACROS %%%%%
+\newcommand{\para}[1]{\noindent \textbf{#1}}
+\newcommand{\cutforspace}[1]{}
+\newcommand{\response}[1]{\vspace{3pt}\hrule\vspace{3pt}\textbf{#1:}}
+
+\usepackage{xcolor}
+\usepackage{bm}
+
+\definecolor{pastelgreen}{RGB}{50,205,50}
+\newcommand{\increase}{\textcolor{pastelgreen}{\bm{$\uparrow$}}}
+\newcommand{\decrease}{\textcolor{red}{\bm{$\downarrow$}}}
+\newcommand{\pstar}{\phantom{*}}
+
+\definecolor{aigold}{RGB}{244,210,1}
+\definecolor{aigreen}{RGB}{213,245,227}
+\definecolor{humanpurple}{RGB}{235,222,240}
+\definecolor{aired}{RGB}{255,180,181}
+\definecolor{mypurple}{RGB}{147,112,219}
+\definecolor{myorange}{RGB}{255,165,0}
+\definecolor{commentgray}{RGB}{86,101,115}
+\definecolor{mygray}{RGB}{169,169,169}
+
+\newcommand{\lightgreen}[1]{\fcolorbox{aigreen}{aigreen}{\parbox{\linewidth}{#1}}}
+\newcommand{\lightred}[1]{\colorbox{aired}{\parbox{\linewidth}{#1}}}
+
+\newcommand{\rightcomment}[1]{\(\triangleright\) {\small \it #1}}
+\newcommand{\eqcomment}[1]{\addtocounter{equation}{1}\tag*{\rightcomment{#1}\quad(\theequation)}}
+
+\usepackage{listings}
+\definecolor{codepurple}{RGB}{128,0,128}
+\lstdefinestyle{datalogstyle}{
+    basicstyle={\tt \scriptsize},
+    xleftmargin={6pt},
+    xrightmargin={6pt},
+    columns=flexible,
+    breakindent=0pt,
+    breaklines=true,
+    frame=tb,
+    stepnumber=1,
+    firstnumber=1,
+    numberfirstline=true,
+    tabsize=2,
+    extendedchars=true,
+    columns=fullflexible,
+    keepspaces=true,
+    escapeinside={@}{@},
+    captionpos=b,
+    commentstyle=\color{black!65},
+    numberstyle=\tiny\color{black!65},
+    stringstyle=\color{codepurple},
+    breakatwhitespace=false,
+    mathescape=true,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    aboveskip={0.8\baselineskip},
+    belowskip={0.2\baselineskip},
+}
+\lstset{style=datalogstyle}
+\renewcommand{\lstlistingname}{Example}
+\newcommand{\progvdots}{\\[-4pt]$\vdots$}
+
+\newif\ifhidecomments
+\ifhidecomments
+    \newcommand{\authorone}[1]{}
+\else
+    \newcommand{\authorone}[1]{\textcolor{blue}{[\textsc{AuthorOne}: #1]}}
+\fi
+\newcommand{\fixme}[1]{\textcolor{red}{[FIXME: #1]}}
+\renewcommand{\th}{\textsuperscript{th}\xspace}
+\newcommand{\bos}{\textsc{bos}\xspace}
+\newcommand{\eos}{\textsc{eos}\xspace}
+\newcommand{\inv}[1]{#1^{\scriptscriptstyle-\!1}}

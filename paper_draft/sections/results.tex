@@ -1,0 +1,65 @@
+\section{Results}
+\label{sec:results}
+
+Our experiments reveal that the stylistic distinction between AI and human text is deeply embedded and linearly accessible within the \qwen model.
+
+\subsection{Linear Separability}
+We first evaluate the accuracy of linear probes in classifying text origin. As shown in \tabref{tab:probe_accuracy}, the model achieves perfect separation at very early layers. Specifically, the last-token activations at Layer 1 are sufficient to distinguish between the two classes with 100\% accuracy.
+
+\begin{table}[h]
+\centering
+\caption{Probe accuracy for distinguishing AI vs. human text. The perfect accuracy at early layers suggests that stylistic markers are encoded immediately in the residual stream.}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Feature Type & Layer & Accuracy \\
+\midrule
+Last Token & 1 & {\bf 1.00} \\
+Mean Pooled & 14 & {\bf 1.00} \\
+\bottomrule
+\end{tabular}
+\label{tab:probe_accuracy}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/probe_accuracy.png}
+        \caption{Probe Accuracy}
+        \label{fig:probe_accuracy}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figures/cosine_similarity.png}
+        \caption{Cosine Similarity}
+        \label{fig:cosine_similarity}
+    \end{subfigure}
+    \caption{Probe accuracy across layers \captiona and cosine similarity between identified directions across layers \captionb. The high accuracy and similarity in middle layers indicate a stable stylistic representation.}
+    \label{fig:results_plots}
+\end{figure}
+
+{\bf What explains the perfect early-layer accuracy?} A qualitative inspection of the \raid dataset reveals that AI-generated abstracts frequently begin with specific formulaic markers (e.g., ``In this paper,''), while human abstracts exhibit greater diversity in their opening sentences. The near-perfect accuracy at Layer 1 indicates that the model's embeddings and initial attention layers immediately capture these distributional differences.
+
+\subsection{Causal Steering}
+To verify that the identified direction $\vv_{14}$ represents a stylistic axis rather than a mere correlation, we perform activation steering during text generation. We prompt the model to complete the sentence ``The recent advancements...'' and observe the change in stylistic quality.
+
+\begin{table}[h]
+\centering
+\caption{Steering evaluation at Layer 14. We report the AI probability assigned by the linear probe to the generated completions.}
+\begin{tabular}{@{}llc@{}}
+\toprule
+Prompt & Steering Coefficient ($\alpha$) & AI Probability \\
+\midrule
+``The recent advancements...'' & $-5.0$ (Subtract AI) & {\bf 0.0051} \\
+``The recent advancements...'' & $\phantom{-}0.0$ (Neutral) & 0.3622 \\
+``The recent advancements...'' & $+5.0$ (Add AI) & {\bf 0.6713} \\
+\bottomrule
+\end{tabular}
+\label{tab:steering_results}
+\end{table}
+
+As shown in \tabref{tab:steering_results}, manipulating the activations along $\vv_{14}$ significantly shifts the stylistic profile of the output. Subtracting the AI direction effectively ``humanizes'' the output, reducing the probe's AI probability from 36.2\% to a negligible 0.5\%. Conversely, adding the direction increases the probability to 67.1\%.
+
+\para{Qualitative Analysis.}
+Beyond the numerical shift in probe scores, we observe a distinct change in the model's linguistic choices. When the AI direction is subtracted ($\alpha = -5.0$), the model adopts a more personal and subjective tone, using phrases such as ``we have now collected'' and ``impossible to understand.'' In contrast, adding the AI direction ($\alpha = +5.0$) pushes the model toward a more technical and ``corporate'' style, with completions featuring phrases like ``integration of machine learning'' and ``making it easier than ever.'' This suggests that the direction captures high-level stylistic features beyond simple token frequencies.
+
+\subsection{Internal Structure}
+We analyze the consistency of the AI direction across layers using cosine similarity. We find that the directions are highly stable in the middle-to-late layers, indicating a consistent internal representation of style as the model processes the sequence. The probe accuracy remains high across almost all layers, supporting the hypothesis that the residual stream maintains stylistic context throughout the computation.

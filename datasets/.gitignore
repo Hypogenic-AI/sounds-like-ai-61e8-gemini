@@ -1,0 +1,11 @@
+# Exclude all data files (can be large)
+*.json
+*.csv
+*.parquet
+*.pt
+*.bin
+*.pkl
+
+# But include documentation and small samples
+!.gitignore
+!README.md

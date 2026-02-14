@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "stages": {
+    "resource_finder": {
+      "success": true,
+      "completion_marker": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/.resource_finder_complete",
+      "outputs": {
+        "literature_review": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/literature_review.md",
+        "resources_catalog": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/resources.md",
+        "papers_dir": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/papers",
+        "datasets_dir": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/datasets",
+        "code_dir": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/code"
+      },
+      "log_file": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/logs/resource_finder_gemini.log",
+      "transcript_file": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/logs/resource_finder_gemini_transcript.jsonl",
+      "elapsed_time": 905.2999801635742
+    },
+    "experiment_runner": {
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 924.53377866745,
+      "log_file": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/logs/execution_gemini.log",
+      "transcript_file": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini/logs/execution_gemini_transcript.jsonl"
+    }
+  },
+  "work_dir": "/data/hypogenicai/workspaces/sounds-like-ai-61e8-gemini"
+}

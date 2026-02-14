@@ -1,0 +1,17 @@
+\section{Introduction}
+\label{sec:introduction}
+
+The rapid proliferation of Large Language Models (LLMs) has led to an explosion of AI-generated content across the internet, from scientific literature to social media. Distinguishing between human-authored and machine-generated text is now a fundamental necessity for maintaining academic standards, ensuring the reliability of information, and preserving the human-centric nature of digital discourse. While external classifiers and watermarking techniques have been developed to detect AI-generated text, we lack a mechanistic understanding of how LLMs internally represent their own stylistic signatures.
+
+The Linear Representation Hypothesis (\lrh) posits that LLMs represent high-level concepts as one-dimensional linear directions in their residual stream \citep{park_2023_linear_representation_hypothesis}. This hypothesis has been successfully validated for concepts such as truthfulness \citep{marks_2023_geometry_truth}, refusal behavior \citep{arditi_2024_refusal_single_direction}, and honesty \citep{li_2023_inference_time_intervention}. However, ``sounding like an AI'' is a more nebulous, stylistic property that involves complex interactions of tone, vocabulary, and structural transitions. {\bf Is there a single linear direction that captures this elusive quality?}
+
+If such a direction exists, it would allow us to not only detect AI-generated text by inspecting internal activations but also causally intervene in the generation process. By steering activations along this axis, we could potentially make model outputs more anthropomorphic or, conversely, more explicitly machine-like, providing a fine-grained control over model persona and style.
+
+In this paper, we identify and analyze a ``sounds like AI'' direction in the residual stream of the \qwen model. Using a balanced subset of the \raid dataset \citep{liamdugan2024raid}, we extract activations and employ Representation Engineering (\repe) techniques \citep{li_2023_inference_time_intervention} to find a candidate direction. Our experiments demonstrate that this direction is not only highly predictive of text origin but also causally relevant for stylistic steering. We show that subtracting the AI direction reduces the AI-ness of generated text from 36.2\% to 0.5\% as measured by a linear probe, while adding it increases it to 67.1\%.
+
+In summary, our main contributions are:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We identify a ``sounds like AI'' direction in the residual stream of \qwen and show that human and AI styles are perfectly linearly separable (100\% accuracy) as early as layer 1.
+    \item We demonstrate causal control over model style via activation steering, shifting the perceived ``AI-ness'' of outputs by over 66 percentage points without losing semantic coherence.
+    \item We characterize the stylistic markers captured by this direction, finding that it encodes traits such as objective tone, technical vocabulary, and formal structural transitions.
+\end{itemize}
